@@ -17,9 +17,6 @@ def get_weather_forecast(lat, lon, api_key = "7884f12f73331ee09fc8f5a48633b801")
     day_one_temp_max = day_one['main']['temp_max']
     day_one_humidity = day_one['main']['humidity']
 
-#test code for commit purposes
-
-
     day_two = json_response['list'][0]
     day_two_dt = day_two['dt']
     day_two_temp = day_two['main']['temp']
