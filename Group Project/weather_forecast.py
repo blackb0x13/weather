@@ -65,22 +65,19 @@ def get_weather_forecast(lat, lon, api_key = "7884f12f73331ee09fc8f5a48633b801")
     # day_seven_temp_max = day_seven['main']['temp_max']
     # day_seven_humidity = day_seven['main']['humidity']
 
-    test_summary = f'Time: {day_one_dt}, Temperature: {day_one_temp}, Temperature Feels Like: {day_one_feels_like}, Temperature Min: {day_one_temp_min}, Temperature Max: {day_one_temp_max}, Humidity {day_one_humidity}'
-    test_summary2 = f'Time: {day_two_dt}, Temperature: {day_two_temp}, Temperature Feels Like: {day_two_feels_like}, Temperature Min: {day_two_temp_min}, Temperature Max: {day_two_temp_max}, Humidity {day_two_humidity}'
-    test_summary3 = f'Time: {day_three_dt}, Temperature: {day_three_temp}, Temperature Feels Like: {day_three_feels_like}, Temperature Min: {day_three_temp_min}, Temperature Max: {day_three_temp_max}, Humidity {day_three_humidity}'
-    test_summary4 = f'Time: {day_four_dt}, Temperature: {day_four_temp}, Temperature Feels Like: {day_four_feels_like}, Temperature Min: {day_four_temp_min}, Temperature Max: {day_four_temp_max}, Humidity {day_four_humidity}'
-    test_summary5 = f'Time: {day_five_dt}, Temperature: {day_five_temp}, Temperature Feels Like: {day_five_feels_like}, Temperature Min: {day_five_temp_min}, Temperature Max: {day_five_temp_max}, Humidity {day_five_humidity}'
-    # test_summary6 = f'Time: {day_six_dt}, Temperature: {day_six_temp}, Temperature Feels Like: {day_six_feels_like}, Temperature Min: {day_six_temp_min}, Temperature Max: {day_six_temp_max}, Humidity {day_six_humidity}'
-    # test_summary7 = f'Time: {day_seven_dt}, Temperature: {day_seven_temp}, Temperature Feels Like: {day_seven_feels_like}, Temperature Min: {day_seven_temp_min}, Temperature Max: {day_seven_temp_max}, Humidity {day_seven_humidity}'
+    day_one = f'Time: {day_one_dt}, Temperature: {day_one_temp}, Temperature Feels Like: {day_one_feels_like}, Temperature Min: {day_one_temp_min}, Temperature Max: {day_one_temp_max}, Humidity {day_one_humidity}'
+    day_two = f'Time: {day_two_dt}, Temperature: {day_two_temp}, Temperature Feels Like: {day_two_feels_like}, Temperature Min: {day_two_temp_min}, Temperature Max: {day_two_temp_max}, Humidity {day_two_humidity}'
+    day_three = f'Time: {day_three_dt}, Temperature: {day_three_temp}, Temperature Feels Like: {day_three_feels_like}, Temperature Min: {day_three_temp_min}, Temperature Max: {day_three_temp_max}, Humidity {day_three_humidity}'
+    day_four = f'Time: {day_four_dt}, Temperature: {day_four_temp}, Temperature Feels Like: {day_four_feels_like}, Temperature Min: {day_four_temp_min}, Temperature Max: {day_four_temp_max}, Humidity {day_four_humidity}'
+    day_five = f'Time: {day_five_dt}, Temperature: {day_five_temp}, Temperature Feels Like: {day_five_feels_like}, Temperature Min: {day_five_temp_min}, Temperature Max: {day_five_temp_max}, Humidity {day_five_humidity}'
+    # day_six = f'Time: {day_six_dt}, Temperature: {day_six_temp}, Temperature Feels Like: {day_six_feels_like}, Temperature Min: {day_six_temp_min}, Temperature Max: {day_six_temp_max}, Humidity {day_six_humidity}'
+    # day_seven = f'Time: {day_seven_dt}, Temperature: {day_seven_temp}, Temperature Feels Like: {day_seven_feels_like}, Temperature Min: {day_seven_temp_min}, Temperature Max: {day_seven_temp_max}, Humidity {day_seven_humidity}'
 
-    newline = '\n'
-    return[test_summary, newline, test_summary2, newline, test_summary3, newline, test_summary4, newline, test_summary5]
-
-
+    
+    return(day_one, day_two, day_three, day_four, day_five)
 
 
-# result = get_weather_forecast(33,34,"7884f12f73331ee09fc8f5a48633b801")
-# print(result)
+
 
 
 
