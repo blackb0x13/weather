@@ -5,22 +5,6 @@ from get_current_wx import get_current_wx_by_lat_long
 from get_weather_forecast import get_wx_forecast
 from get_location_info_by_ip import get_public_ip, get_city_and_state_by_ip
 
-
-# Function to simulate fetching weather data
-def fetch_weather_data(city, state, zip_code):
-    # Here, you would fetch data from a weather API based on the inputs
-    # For demonstration, we'll just return a mock response
-    current_weather = "Sunny, 75°F"
-    forecast = [
-        "Tomorrow: Rainy, 65°F",
-        "Day after: Cloudy, 70°F",
-        "3 days out: Sunny, 77°F",
-        "4 days out: Thunderstorms, 72°F",
-        "5 days out: Partly Cloudy, 75°F"
-    ]
-    return current_weather, forecast
-
-# Function called when the 'Get Weather' button is pressed
 def get_local_weather(city, state):
      lat, long = get_lat_long_by_city_state(city, state)
      current_weather_dict = get_current_wx_by_lat_long(lat, long)
@@ -40,13 +24,9 @@ def get_weather():
     else:
          current_weather_var.set(f"Please enter a city and state, or a ZIP code.")
          
-
     current_weather_dict = get_current_wx_by_lat_long(lat, long)
     current_weather = f"{current_weather_dict['description'].capitalize()}, {current_weather_dict['temp']}°F"
-    forecast_weather = f'NOT IMPLEMENTED: {get_wx_forecast(lat, long)}'
-
-    #current_weather, forecast = fetch_weather_data(city, state, zip_code)
-    
+    forecast_weather = f'NOT IMPLEMENTED: {get_wx_forecast(lat, long)}'    
     current_weather_var.set(f"Current Weather for\nSelected Location:\n{current_weather}")
     forecast_var.set(forecast_weather)
 
