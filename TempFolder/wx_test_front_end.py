@@ -25,7 +25,7 @@ def get_weather():
     if zip_code is not None and zip_code != "":
          lat, long = get_lat_long_by_zip(zip_code)
     elif state not in (None, "") and city not in (None, ""):
-         local_city_var.set(city) #sets local city, 
+         local_city_var.set(f'{city}, {state}') #sets local city, 
          lat, long = get_lat_long_by_city_state(city, state)
     else:
          current_weather_var.set(f"Please enter a city and state, or a ZIP code.")
@@ -83,7 +83,7 @@ local_city_label.grid(row=6, column=0, columnspan=10)
 local_weather_label=tk.Label(root, textvariable=local_weather_var)
 local_weather_label.grid(row=7, column=0, columnspan=10)
 
-label = tk.Label(root, textvariable=local_city_var, font=("Broadway", 44, "bold"), foreground="white") #adjust to change with selection
+label = tk.Label(root, textvariable=local_city_var, font=("Broadway", 40, "bold"), foreground="white") #adjust to change with selection
 label.place(relx=0.5, rely=0.94, anchor='center')
 
 ip_address = get_public_ip()
