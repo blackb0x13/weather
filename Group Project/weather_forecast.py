@@ -30,6 +30,7 @@ def get_weather_forecast():
         description = day["weather"][0]["description"]   #pulls in the data from API
         print(f"{date}: {temp}°F, {description}")
 
+
     return()
 
 get_weather_forecast()
