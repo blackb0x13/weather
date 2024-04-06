@@ -1,9 +1,13 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, Label
 from get_lat_lon_by_loc import get_lat_long_by_zip, get_lat_long_by_city_state
 from get_current_wx import get_current_wx_by_lat_long
 from get_weather_forecast import get_wx_forecast
 from get_location_info_by_ip import get_public_ip, get_city_and_state_by_ip
+from PIL import Image, ImageTk
+
+#TODO:move windows, add display?, add forecast?, add reverse geocoding
+
 
 def get_local_weather(city, state):
      lat, long = get_lat_long_by_city_state(city, state)
@@ -17,9 +21,11 @@ def get_weather():
     state = state_entry.get()
     zip_code = zip_entry.get()
 
+    
     if zip_code is not None and zip_code != "":
          lat, long = get_lat_long_by_zip(zip_code)
     elif state not in (None, "") and city not in (None, ""):
+         local_city_var.set(city) #sets local city, 
          lat, long = get_lat_long_by_city_state(city, state)
     else:
          current_weather_var.set(f"Please enter a city and state, or a ZIP code.")
@@ -32,7 +38,13 @@ def get_weather():
 
 # Creating the main window
 root = tk.Tk()
+root.geometry("800x1200")
 root.title("Weather App")
+image = Image.open('TempFolder/slotmachine.jpg')
+photo = ImageTk.PhotoImage(image)
+
+background_label = Label(root, image=photo)
+background_label.place(relwidth=1, relheight=1)
 
 # Creating StringVars to hold input and output values
 current_weather_var = tk.StringVar()
@@ -71,9 +83,12 @@ local_city_label.grid(row=6, column=0, columnspan=10)
 local_weather_label=tk.Label(root, textvariable=local_weather_var)
 local_weather_label.grid(row=7, column=0, columnspan=10)
 
+label = tk.Label(root, textvariable=local_city_var, font=("Broadway", 44, "bold"), foreground="white") #adjust to change with selection
+label.place(relx=0.5, rely=0.94, anchor='center')
+
 ip_address = get_public_ip()
 local_city, local_state = get_city_and_state_by_ip(ip_address)
-local_city_var.set(f'Current Weather in\n{local_city}, {local_state}:')
+local_city_var.set(f'{local_city}, {local_state}')
 local_weather = get_local_weather(local_city, local_state)
 
 local_weather_var.set(local_weather)
