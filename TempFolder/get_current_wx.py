@@ -15,6 +15,5 @@ def get_current_wx_by_lat_long(lat, long):
         ('humidity', main['humidity']),
         ('description', weather[0]['description'])
         ])
-    print(curr_wx_dict)
+    return curr_wx_dict
 
-get_current_wx_by_lat_long(33, 34)

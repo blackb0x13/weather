@@ -10,6 +10,5 @@ def get_wx_forecast(lat, lon):
     for i in range(len(json_response['list'])):
         json_response_list_val = json_response['list'][i]
         timestamp = time_converter(json_response_list_val['dt'])
-        print(timestamp)
-
-get_wx_forecast(33, 34)
+    
+    return timestamp

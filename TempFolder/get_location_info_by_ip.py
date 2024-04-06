@@ -15,4 +15,14 @@ def get_public_ip():
 public_ip = get_public_ip()
 
 timezone = get_timezone_by_ip(public_ip)
-print(timezone)
+
+def get_city_and_state_by_ip(ip_address):
+    response = requests.get(f'https://ipinfo.io/{ip_address}?token=292716b5de2410')
+    data = response.json()
+    print(data)
+    city = data['city']
+    state = data['region']
+    return city, state
+
+city, state = get_city_and_state_by_ip(public_ip)
+print(city+ ", " + state )
