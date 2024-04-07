@@ -17,3 +17,6 @@ def get_current_wx_by_lat_long(lat, long):
         ])
     return curr_wx_dict
 
+# temp_dict = (get_current_wx_by_lat_long(33,34))
+# temp = list(str(round(float(temp_dict['temp']))))
+# print(temp)
