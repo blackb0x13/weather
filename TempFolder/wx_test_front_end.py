@@ -17,19 +17,17 @@ def get_local_weather(city, state):
 
 def open_forecast():
     new_window = tk.Toplevel(root)
-    new_window.title("Forecast")
-    new_window.geometry("300x200")  # Width x Height
-
-    # Example function output to display in the new window
-    def function_to_run():
-        return "Hello from the new window!"
+    new_window.title("Forecast Sportsbook")
+    new_window.geometry("400x800")  # Width x Height
 
     # Run the function and display its output in the new window
-    output = function_to_run()
-    label = tk.Label(new_window, text=output)
-    label.pack(pady=20)
+    output = get_forecast()
 
-
+    for i, string in enumerate(output):
+        text_color = "white" if i % 3 == 0 else "green"
+        label = tk.Label(new_window, text=string, fg=text_color, bg="black")
+        label.pack(anchor='w', fill=tk.X)
+        
 def get_current_weather():
     city = city_entry.get()
     state = state_entry.get()
@@ -63,12 +61,10 @@ def get_current_weather():
 
 def get_forecast():
      city = city_entry.get()
-     print(f'City: {city}')
      state = state_entry.get()
-
      zip_code = zip_entry.get()
 
-     if zip_code is not None and zip_code != "":
+     if zip_code is not None and zip_code != "" and zip_code != "Enter ZIP":
          lat, long = get_lat_long_by_zip(zip_code)
      elif state not in (None, "") and city not in (None, ""):
          local_city_var.set(f'{city}, {state}') #sets local city, 
@@ -76,8 +72,8 @@ def get_forecast():
      else:
          current_weather_var.set(f"Please enter a city and state, or a ZIP code.")
 
-     forecast_weather = f'NOT IMPLEMENTED: {get_wx_forecast(lat, long)}'    
-     forecast_var.set(forecast_weather)
+     forecast_weather = get_wx_forecast(lat, long)
+     return forecast_weather    
 
 
 # Creating the main window
@@ -92,7 +88,6 @@ background_label.place(relwidth=1, relheight=1)
 
 # Creating StringVars to hold input and output values
 current_weather_var = tk.StringVar()
-forecast_var = tk.StringVar()
 local_city_var = tk.StringVar()
 local_weather_var=tk.StringVar()
 description_var=tk.StringVar()
