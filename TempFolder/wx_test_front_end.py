@@ -26,6 +26,7 @@ def get_current_weather():
     if zip_code is not None and zip_code != "" and zip_code != "Enter ZIP":
          print(f'zip: {zip_code}')
          lat, long = get_lat_long_by_zip(zip_code)
+         local_city_var.set(f"ZIP Code: {zip_code}")
     elif state not in (None, "") and city not in (None, ""):
          local_city_var.set(f'{city}, {state}') #sets local city, 
          lat, long = get_lat_long_by_city_state(city, state)
