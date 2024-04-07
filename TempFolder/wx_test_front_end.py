@@ -9,13 +9,26 @@ from PlaceholderEntry import PlaceholderEntry
 
 #TODO:move windows, add display?, add forecast?, add reverse geocoding
 
-
 def get_local_weather(city, state):
      lat, long = get_lat_long_by_city_state(city, state)
      current_weather_dict = get_current_wx_by_lat_long(lat, long)
      current_weather = f"{current_weather_dict['description'].capitalize()}, {current_weather_dict['temp']}°F"
      return current_weather
-     
+
+def open_forecast():
+    new_window = tk.Toplevel(root)
+    new_window.title("Forecast")
+    new_window.geometry("300x200")  # Width x Height
+
+    # Example function output to display in the new window
+    def function_to_run():
+        return "Hello from the new window!"
+
+    # Run the function and display its output in the new window
+    output = function_to_run()
+    label = tk.Label(new_window, text=output)
+    label.pack(pady=20)
+
 
 def get_current_weather():
     city = city_entry.get()
@@ -104,7 +117,7 @@ zip_entry.place(relx=0.37, rely=0.76, anchor='center')
 get_current_weather_button = tk.Button(root, text="Current Wx", command=get_current_weather)
 get_current_weather_button.place(relx=0.68, rely=0.72, anchor='center')
 
-get_forecast_button = tk.Button(root, text="Forecast Wx", command=get_forecast)
+get_forecast_button = tk.Button(root, text="Forecast Wx", command=open_forecast)
 get_forecast_button.place(relx=0.68, rely=0.75, anchor='center')
 
 #Label for top description
@@ -120,12 +133,6 @@ right_digit_label.place(relx=0.5, rely=0.5, anchor='center')
 
 unit_digit_label = tk.Label(root, textvariable=unit_digit_var, font=("Arial", 100, "bold"), foreground="white")
 unit_digit_label.place(relx=0.63, rely=0.5, anchor='center')
-
-# forecast_label = tk.Label(root, textvariable=forecast_var)
-# forecast_label.grid(row=6, column=0, columnspan=10)
-
-# local_city_label = tk.Label(root, textvariable=local_city_var)
-# local_city_label.grid(row=7, column=0, columnspan=10)
 
 local_weather_label=tk.Label(root, textvariable=local_weather_var)
 local_weather_label.grid(row=8, column=0, columnspan=10)
