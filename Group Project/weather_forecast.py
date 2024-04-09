@@ -16,7 +16,8 @@ def get_weather_forecast():
     "q": f"{city},{country_code}",
     "appid": api_key,
     "units": "imperial",  # Use imperial units (Fahrenheit)
-    "cnt": 7,  # Retrieve data for 7 days
+    #"cnt": 7,  # Retrieve data for 1 days 3hr intervals 8 times a day
+    "cnt": 40,  # Retrieve data for 5 days 3hr intervals 8 times a day
     }
 
     # Make the API request
