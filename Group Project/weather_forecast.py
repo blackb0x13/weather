@@ -22,7 +22,7 @@ def get_weather_forecast():
     # Make the API request
     response = req.get(api_url, params=params)
     data = response.json()
-    #print(data)
+    print(data)
 
     # Extract and print weather data for the next 7 days
     for day in data["list"]:
