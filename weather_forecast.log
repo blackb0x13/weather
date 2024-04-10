@@ -1,0 +1,2 @@
+2024-04-10 09:53:42,093 DEBUG:Starting new HTTPS connection (1): api.openweathermap.org:443
+2024-04-10 09:53:42,835 DEBUG:https://api.openweathermap.org:443 "GET /data/2.5/forecast?q=Vancouver%2CCA&appid=7884f12f73331ee09fc8f5a48633b801&units=imperial&cnt=40 HTTP/1.1" 200 15981
