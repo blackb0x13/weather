@@ -21,6 +21,9 @@ Each row represents a different criterion with points awarded based on the quali
 # Technologies used:
 
 - Python
+  - Requests
+  - json
+  - PIL
 - Tkinter
 - API provided by https://openweathermap.org/api/
 
@@ -43,3 +46,7 @@ Each row represents a different criterion with points awarded based on the quali
 - David Roy
 
 ** Project made possible by VetsInTech. Special thanks to DraftKings, Steve Marlow and Brion Lentell. **
+
+# Copyright:
+
+- All licenses in this repository are copyrighted by their respective authors. Everything else is released under CC0. See LICENSE for details.
