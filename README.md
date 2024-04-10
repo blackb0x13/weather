@@ -32,14 +32,14 @@ Each row represents a different criterion with points awarded based on the quali
 
 # Project Contributors:
 
-Kirk Fondren
-Diego Emede
-Sean McKee
-Fred Gunther
-Alexia Grimes
-George Mahuwe
-Greg Straud
-Chris Neal
-David Roy
+-Kirk Fondren
+-Diego Emede
+-Sean McKee
+-Fred Gunther
+-Alexia Grimes
+-George Mahuwe
+-Greg Straud
+-Chris Neal
+-David Roy
 
 ** Project made possible by VetsInTech. Special thanks to DraftKings, Steve Marlow and Brion Lentell. **
