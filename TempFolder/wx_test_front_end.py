@@ -6,6 +6,7 @@ from get_weather_forecast import get_wx_forecast
 from get_location_info_by_ip import get_public_ip, get_city_and_state_by_ip
 from PIL import Image, ImageTk
 from PlaceholderEntry import PlaceholderEntry
+import requests
 
 #TODO:move windows, add display?, add forecast?, add reverse geocoding
 
@@ -27,22 +28,40 @@ def open_forecast():
         text_color = "white" if i % 3 == 0 else "green"
         label = tk.Label(new_window, text=string, fg=text_color, bg="black")
         label.pack(anchor='w', fill=tk.X)
-        
+
+def get_pollution():
+    response = requests.get("https://openweathermap.org/api/air-pollution")
+    data = response.json()
+    aqi = data.get("AQI", "N/A")
+
+    new_window = tk.Toplevel(root)
+    new_window.title("Smoking Section")
+    new_window.geometry("400x800")
+
+    output = "AQI"
+    # NEED TO CONTINUE ---- PLACEHOLDER ------
+
+    for string in enumerate(output):
+        text_color = "white"
+        label = tk.Label(new_window, text=string, fg=text_color, bg="black")
+        label.pack(anchor='w', fill=tk.X)
+
+
 def get_current_weather():
     city = city_entry.get()
     state = state_entry.get()
     zip_code = zip_entry.get()
 
-    
+
     if zip_code is not None and zip_code != "" and zip_code != "Enter ZIP":
          print(f'zip: {zip_code}')
          lat, long = get_lat_long_by_zip(zip_code)
          local_city_var.set(f"ZIP Code: {zip_code}")
     elif state not in (None, "") and city not in (None, ""):
-         local_city_var.set(f'{city}, {state}') #sets local city, 
+         local_city_var.set(f'{city}, {state}') #sets local city,
          lat, long = get_lat_long_by_city_state(city, state)
     else:
-         current_weather_var.set(f"Please enter a city and state, or a ZIP code.")   
+         current_weather_var.set(f"Please enter a city and state, or a ZIP code.")
 
     current_weather_dict = get_current_wx_by_lat_long(lat, long)
 
@@ -67,13 +86,13 @@ def get_forecast():
      if zip_code is not None and zip_code != "" and zip_code != "Enter ZIP":
          lat, long = get_lat_long_by_zip(zip_code)
      elif state not in (None, "") and city not in (None, ""):
-         local_city_var.set(f'{city}, {state}') #sets local city, 
+         local_city_var.set(f'{city}, {state}') #sets local city,
          lat, long = get_lat_long_by_city_state(city, state)
      else:
          current_weather_var.set(f"Please enter a city and state, or a ZIP code.")
 
      forecast_weather = get_wx_forecast(lat, long)
-     return forecast_weather    
+     return forecast_weather
 
 
 # Creating the main window
@@ -96,44 +115,49 @@ left_digit_var = tk.StringVar()
 unit_digit_var = tk.StringVar()
 
 # City Input Field
-city_entry = PlaceholderEntry(root, placeholder="Enter City")
-city_entry.place(relx=0.37, rely=0.70, anchor='center')
+city_entry = PlaceholderEntry(root, placeholder="Enter City",)
+city_entry.place(relx=0.37, rely=0.71, anchor='center')
 
 # State Input Field
 state_entry = PlaceholderEntry(root, placeholder="Enter State")
-state_entry.place(relx=0.37, rely=0.73, anchor='center')
+state_entry.place(relx=0.37, rely=0.74, anchor='center')
 
 #ZIP Input Field
 zip_entry = PlaceholderEntry(root, placeholder="Enter ZIP")
-zip_entry.place(relx=0.37, rely=0.76, anchor='center')
+zip_entry.place(relx=0.37, rely=0.77, anchor='center')
 
 
 # Button to fetch and display the weather
 get_current_weather_button = tk.Button(root, text="Current Wx", command=get_current_weather)
-get_current_weather_button.place(relx=0.68, rely=0.72, anchor='center')
+get_current_weather_button.place(relx=0.68, rely=0.74, anchor='center')
 
 get_forecast_button = tk.Button(root, text="Forecast Wx", command=open_forecast)
-get_forecast_button.place(relx=0.68, rely=0.75, anchor='center')
+get_forecast_button.place(relx=0.68, rely=0.77, anchor='center')
+
+get_pollution_button = tk.Button(root, text="Air Quality", command=get_pollution)
+get_pollution_button.place(relx=0.68, rely=0.71, anchor='center')
 
 #Label for top description
-description_label = tk.Label(root, textvariable=description_var, font=("Arial", 30, "bold"), foreground="white")
+description_label = tk.Label(root, textvariable=description_var, font=("Arial", 30, "bold"), background="black", foreground="white")
 description_label.place(relx=0.5, rely=0.325, anchor='center')
 
 #Lable for temp digits
-left_digit_label = tk.Label(root, textvariable=left_digit_var, font=("Arial", 100, "bold"), foreground="white")
+left_digit_label = tk.Label(root, textvariable=left_digit_var, font=("Arial", 100, "bold"), background="black", foreground="white")
 left_digit_label.place(relx=0.35, rely=0.5, anchor='center')
 
-right_digit_label = tk.Label(root, textvariable=right_digit_var, font=("Arial", 100, "bold"), foreground="white")
+right_digit_label = tk.Label(root, textvariable=right_digit_var, font=("Arial", 100, "bold"), background="black", foreground="white")
 right_digit_label.place(relx=0.5, rely=0.5, anchor='center')
 
-unit_digit_label = tk.Label(root, textvariable=unit_digit_var, font=("Arial", 100, "bold"), foreground="white")
+unit_digit_label = tk.Label(root, textvariable=unit_digit_var, font=("Arial", 100, "bold"), background="black", foreground="white")
 unit_digit_label.place(relx=0.63, rely=0.5, anchor='center')
 
 local_weather_label=tk.Label(root, textvariable=local_weather_var)
 local_weather_label.grid(row=8, column=0, columnspan=10)
 
-center_city_label = tk.Label(root, textvariable=local_city_var, font=("Arial", 40, "bold"), foreground="white") 
-center_city_label.place(relx=0.5, rely=0.94, anchor='center')
+center_city_label = tk.Label(root, textvariable=local_city_var, font=("Arial", 40, "bold"), background="black",foreground="white")
+center_city_label.place(relx=0.5, rely=0.85, anchor='center')
+
+
 
 
 ip_address = get_public_ip()
