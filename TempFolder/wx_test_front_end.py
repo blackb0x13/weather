@@ -148,10 +148,10 @@ get_forecast_button.place(relx=0.68, rely=0.70, anchor='center')
 get_pollution_button = tk.Button(root, text="Air Quality", command=get_pollution)
 get_pollution_button.place(relx=0.68, rely=0.67, anchor='center')
 
-smoker = Image.open('TempFolder/slot_smoker.jpg')
-slot_smoker = ImageTk.PhotoImage(smoker)
-new_label = tk.Label(root, image=slot_smoker)
-new_label.place(relx=0.5, rely=0.2, anchor='center')
+# smoker = Image.open('TempFolder/slot_smoker.jpg')
+# slot_smoker = ImageTk.PhotoImage(smoker)
+# new_label = tk.Label(root, image=slot_smoker)
+# new_label.place(relx=0.5, rely=0.2, anchor='center')
 #Can put this information into the new window for background and put AQI on top
 
 #Label for top description
