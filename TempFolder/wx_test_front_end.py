@@ -7,6 +7,7 @@ from get_location_info_by_ip import get_public_ip, get_city_and_state_by_ip
 from PIL import Image, ImageTk
 from PlaceholderEntry import PlaceholderEntry
 import requests
+from get_pollution import get_current_air_quality
 
 #TODO:move windows, add display?, add forecast?, add reverse geocoding
 
@@ -30,16 +31,16 @@ def open_forecast():
         label.pack(anchor='w', fill=tk.X)
 
 def get_pollution():
-    response = requests.get("https://openweathermap.org/api/air-pollution")
-    data = response.json()
-    aqi = data.get("AQI", "N/A")
+    air_quality = get_current_air_quality(lat, long)
 
     new_window = tk.Toplevel(root)
     new_window.title("Smoking Section")
     new_window.geometry("400x800")
 
-    output = "AQI"
-    # NEED TO CONTINUE ---- PLACEHOLDER ------
+#     output = aqi
+    # do a get on the AQI api and retrieve appropriate data
+    # open a new window called Smoking Section which will display requested location's air quality
+        # NEED TO CONTINUE ---- PLACEHOLDER ------
 
     for string in enumerate(output):
         text_color = "white"
@@ -116,26 +117,26 @@ unit_digit_var = tk.StringVar()
 
 # City Input Field
 city_entry = PlaceholderEntry(root, placeholder="Enter City",)
-city_entry.place(relx=0.37, rely=0.71, anchor='center')
+city_entry.place(relx=0.37, rely=0.67, anchor='center')
 
 # State Input Field
 state_entry = PlaceholderEntry(root, placeholder="Enter State")
-state_entry.place(relx=0.37, rely=0.74, anchor='center')
+state_entry.place(relx=0.37, rely=0.70, anchor='center')
 
 #ZIP Input Field
 zip_entry = PlaceholderEntry(root, placeholder="Enter ZIP")
-zip_entry.place(relx=0.37, rely=0.77, anchor='center')
+zip_entry.place(relx=0.37, rely=0.73, anchor='center')
 
 
 # Button to fetch and display the weather
 get_current_weather_button = tk.Button(root, text="Current Wx", command=get_current_weather)
-get_current_weather_button.place(relx=0.68, rely=0.74, anchor='center')
+get_current_weather_button.place(relx=0.68, rely=0.73, anchor='center')
 
 get_forecast_button = tk.Button(root, text="Forecast Wx", command=open_forecast)
-get_forecast_button.place(relx=0.68, rely=0.77, anchor='center')
+get_forecast_button.place(relx=0.68, rely=0.70, anchor='center')
 
-get_pollution_button = tk.Button(root, text="Air Quality", command=get_pollution)
-get_pollution_button.place(relx=0.68, rely=0.71, anchor='center')
+get_pollution_button = tk.Button(root, text="Air Quality", command=FUNCTION)
+get_pollution_button.place(relx=0.68, rely=0.67, anchor='center')
 
 #Label for top description
 description_label = tk.Label(root, textvariable=description_var, font=("Arial", 30, "bold"), background="black", foreground="white")
